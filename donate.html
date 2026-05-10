@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | Hope & Harvest</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="donate.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="robinhoodarmy-clone.html">
+                <img src="https://robinhoodarmy.com/assets/RHA-Logo.png" alt="Robin Hood Army Logo">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="robinhoodarmy-clone.html">Home</a></li>
+            <li><a href="index.html#stories">Impact Stories</a></li>
+            <li><a href="index.html#stats">Transparency</a></li>
+            <li><a href="donate.html" class="cta-nav">Donate Now</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="donate-hero">
+            <div class="reveal">
+                <h1>Your ₹100 Can Save Someone Tonight</h1>
+                <p>Small acts, when multiplied by millions, can transform the world.</p>
+            </div>
+        </section>
+
+        <section class="donation-options reveal">
+            <div class="donation-card" data-amount="100">
+                <h2>₹100</h2>
+                <p>Feed 1 person for a day</p>
+            </div>
+            <div class="donation-card" data-amount="500">
+                <h2>₹500</h2>
+                <p>Feed a family for 3 days</p>
+            </div>
+            <div class="donation-card" data-amount="1000">
+                <h2>₹1000</h2>
+                <p>Support children's education</p>
+            </div>
+        </section>
+
+        <section class="custom-donation reveal">
+            <h3>Enter Custom Amount</h3>
+            <div class="custom-input-group">
+                <input type="number" id="custom-amount" placeholder="Enter Amount in ₹">
+            </div>
+            <button id="donate-btn" class="btn btn-primary" style="border:none; cursor:pointer;">Proceed to Donate</button>
+        </section>
+
+        <section class="impact-progress reveal">
+            <div class="section-header">
+                <h2>Our Collective Impact</h2>
+                <p>Real-time progress towards our daily humanitarian goals.</p>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>Daily Meal Goal</span>
+                    <span id="daily-progress-text">0/5000</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="daily-progress-bar" class="progress-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>Weekly Support Goal</span>
+                    <span id="weekly-progress-text">0/35000</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="weekly-progress-bar" class="progress-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-label">
+                    <span>Education Fund</span>
+                    <span id="edu-progress-text">0/10,00,000</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="edu-progress-bar" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="success-overlay" class="success-overlay">
+        <div class="success-content">
+            <span class="success-emoji">😊</span>
+            <h2>Thank You for Saving Lives</h2>
+            <p>Your contribution has been received. You've just made someone's night a little brighter.</p>
+            <br>
+            <button onclick="closeSuccess()" class="btn btn-outline" style="border:none; cursor:pointer;">Back to Home</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            &copy; 2026 Hope & Harvest NGO. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="donate.js"></script>
+</body>
+</html>
