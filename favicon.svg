@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="#1a5f3f"/>
+  
+  <!-- White border circle -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#fff" stroke-width="3"/>
+  
+  <!-- Stylized "RH" (Robin Hood) -->
+  <g transform="translate(100, 100)">
+    <!-- "R" letter -->
+    <path d="M -35 -30 L -35 30 L -20 30 L -20 5 L -5 5 Q 5 5 5 -5 Q 5 -15 -5 -15 L -20 -15 L -20 -30 Z" 
+          fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+    
+    <!-- "H" letter -->
+    <path d="M 15 -30 L 15 30 M 15 0 L 35 0 M 35 -30 L 35 30" 
+          fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Accent arrow/bow element in lighter green -->
+  <path d="M 140 60 Q 150 80 140 100" fill="none" stroke="#2d8659" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="140" cy="100" r="3" fill="#2d8659"/>
+</svg>

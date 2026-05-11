@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheckIn - Robin Hood Army</title>  <link rel="icon" type="image/svg+xml" href="favicon.svg">  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ─── CHECKIN DRIVE HERO ─── */
+    .checkin-drive-hero {
+      background: linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%);
+      color: #fff;
+      padding: 5rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .checkin-hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .checkin-hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+
+    .badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .badge-item {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .badge-item:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-8px);
+    }
+
+    .badge-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .badge-item h4 {
+      font-weight: 900;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge-item p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 980px) {
+      .checkin-drive-hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    /* ─── RECENT CHECKINS SECTION ─── */
+    .recent-checkins {
+      background: #fff;
+      padding: 6rem 5%;
+    }
+
+    .section-header {
+      text-align: left;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 900;
+      color: #1c1c1c;
+      margin-bottom: 2rem;
+    }
+
+    .checkin-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-box {
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 2px solid #e0d5c7;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #1a5f3f;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── CHECKIN GALLERY ─── */
+    .checkin-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0e8df;
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(26, 95, 63, 0.15);
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+    }
+
+    .gallery-item h4 {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      color: #1c1c1c;
+      font-weight: 800;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.95);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+
+    .gallery-item p {
+      position: absolute;
+      bottom: 0.3rem;
+      right: 1rem;
+      color: #999;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.9);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+    }
+
+    /* ─── CHECKIN FORM SECTION ─── */
+    .checkin-form-section {
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      padding: 6rem 5%;
+    }
+
+    .checkin-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 3.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    }
+
+    .checkin-form h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #1c1c1c;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .success-msg {
+      background: #e8f5e9;
+      border-left: 5px solid #27ae60;
+      color: #2e7d32;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      display: none;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .success-msg.show {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 700;
+      color: #1c1c1c;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.95rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #1a5f3f;
+      box-shadow: 0 0 0 4px rgba(26, 95, 63, 0.08);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* ─── CHECKIN HIGHLIGHTS ─── */
+    .checkin-highlights {
+      background: #fff;
+      padding: 6rem 5%;
+    }
+
+    .checkin-highlights h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .checkin-highlights > p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      border-radius: 12px;
+      border-left: 5px solid #1a5f3f;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(26, 95, 63, 0.15);
+    }
+
+    .highlight-rank {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #1a5f3f;
+      min-width: 60px;
+    }
+
+    .highlight-content h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1c1c1c;
+      margin-bottom: 0.3rem;
+    }
+
+    .highlight-content p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .city-dropdown {
+      text-align: center;
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .city-dropdown label {
+      display: block;
+      font-weight: 700;
+      color: #1c1c1c;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .city-dropdown select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    /* ─── LEADERBOARD SECTION ─── */
+    .leaderboard-section {
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      padding: 6rem 5%;
+    }
+
+    .leaderboard-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .leaderboard {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      border-left: 5px solid #1a5f3f;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .leaderboard-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(26, 95, 63, 0.1);
+    }
+
+    .rank-badge {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #1a5f3f;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      border-radius: 12px;
+    }
+
+    .contributor-info {
+      flex: 1;
+      margin-left: 2rem;
+    }
+
+    .contributor-info h3 {
+      font-weight: 800;
+      color: #1c1c1c;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .contributor-info p {
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    .contributor-stats {
+      text-align: right;
+    }
+
+    .contributor-stats p {
+      font-weight: 800;
+      color: #1a5f3f;
+      font-size: 1.3rem;
+    }
+
+    @media (max-width: 980px) {
+      .checkin-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      .leaderboard-item {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .contributor-info {
+        margin-left: 0;
+      }
+
+      .contributor-stats {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ─── NAVBAR ─── -->
+  <nav>
+    <div class="nav-logo">
+      <a href="robinhoodarmy-clone.html">Robin Hood Army</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="robinhoodarmy-clone.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="mission-sankalp-78.html">Mission Sankalp 78</a></li>
+      <li><a href="checkin.html" class="active">CheckIn</a></li>
+      <li><a href="join-now.html" class="cta-nav">Join Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── CHECKIN DRIVE HERO ─── -->
+  <section class="checkin-drive-hero">
+    <div class="checkin-hero-content">
+      <h1>Check-In to your RHA Drive</h1>
+      <p>Check-In by uploading a selfie of your drive and unlock badges that you can share with your friends</p>
+      <button class="btn" id="scrollToForm">Check-In Now</button>
+    </div>
+    
+    <div class="badge-grid">
+      <div class="badge-item">
+        <div class="badge-icon">⭐</div>
+        <h4>CADET</h4>
+        <p>1 Drive</p>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">🥋</div>
+        <h4>NINJA</h4>
+        <p>10 Drives</p>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">⚔️</div>
+        <h4>GLADIATOR</h4>
+        <p>50 Drives</p>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">👑</div>
+        <h4>CENTURION</h4>
+        <p>100 Drives</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RECENT CHECKINS ─── -->
+  <section class="recent-checkins">
+    <div class="section-header">
+      <h2>Your fellow Robins are Checking-In across the world</h2>
+      <div class="checkin-stats">
+        <div class="stat-box">
+          <p class="stat-number" id="totalRobins">0</p>
+          <p class="stat-label">Robins Checked-In</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-number" id="totalMeals">0</p>
+          <p class="stat-label">Meals Served</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkin-gallery" id="checkinGallery">
+      <!-- Gallery items will be loaded here -->
+    </div>
+  </section>
+
+  <!-- ─── CHECKIN FORM ─── -->
+  <section class="checkin-form-section" id="checkinFormSection">
+    <div class="checkin-form">
+      <h2>Submit Your Check-In</h2>
+      
+      <div class="success-msg" id="successMsg">
+        ✅ Check-In submitted successfully!
+      </div>
+
+      <form id="checkinForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="your.email@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+91 9876543210" required>
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" placeholder="Your city" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="checkinDate">Check-In Date</label>
+            <input type="date" id="checkinDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="hours">Hours Contributed</label>
+            <input type="number" id="hours" min="1" placeholder="Number of hours" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="meals">Meals Served</label>
+            <input type="number" id="meals" min="0" placeholder="Number of meals" required>
+          </div>
+
+          <div class="form-group">
+            <label for="activity">Activity Type</label>
+            <select id="activity" required>
+              <option value="">Select activity type</option>
+              <option value="Food Distribution">Food Distribution</option>
+              <option value="Community Outreach">Community Outreach</option>
+              <option value="Event Coordination">Event Coordination</option>
+              <option value="Teaching">Teaching</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-group full-width">
+            <label for="notes">Notes</label>
+            <textarea id="notes" placeholder="Share your experience..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-large" style="width: 100%;">Submit Check-In</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── CHECK-IN HIGHLIGHTS ─── -->
+  <section class="checkin-highlights">
+    <h2>Check-In Highlights</h2>
+    <p>Top 10 cities with Check-Ins over the last 7 days</p>
+    
+    <div class="highlights-grid" id="highlightsGrid">
+      <!-- Will be populated by JavaScript -->
+    </div>
+
+    <div class="city-dropdown">
+      <label>Look up any city</label>
+      <select id="cityDropdown">
+        <option value="">Choose</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- ─── LEADERBOARD ─── -->
+  <section class="leaderboard-section">
+    <h2>Top Volunteers</h2>
+    <div class="leaderboard" id="leaderboardList"></div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Robin Hood Army</div>
+      <p>Join us in our mission to fight hunger and build a stronger community.</p>
+      <p class="footer-copy">&copy; 2024 Robin Hood Army. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ─── WHATSAPP FAB ─── -->
+  <a href="https://api.whatsapp.com/send/?phone=918971966164" class="whatsapp-fab" target="_blank">💬</a>
+
+  <script>
+    // Sample data for gallery (for demonstration)
+    const sampleCheckins = [
+      { city: 'Pune', hours: 40, meals: 120, timestamp: '40 seconds ago' },
+      { city: 'Kolkata', hours: 30, meals: 95, timestamp: '7 minutes ago' },
+      { city: 'Jodhpur', hours: 25, meals: 80, timestamp: '8 minutes ago' },
+      { city: 'Ahmedabad', hours: 35, meals: 110, timestamp: '10 minutes ago' },
+      { city: 'Jodhpur', hours: 28, meals: 90, timestamp: '12 minutes ago' },
+      { city: 'Kolkata', hours: 32, meals: 100, timestamp: '16 minutes ago' },
+      { city: 'Mumbai', hours: 45, meals: 140, timestamp: '20 minutes ago' },
+      { city: 'Jodhpur', hours: 30, meals: 100, timestamp: '27 minutes ago' },
+      { city: 'Pune', hours: 38, meals: 115, timestamp: '30 minutes ago' },
+      { city: 'Chandigarh', hours: 35, meals: 105, timestamp: '35 minutes ago' },
+      { city: 'Jodhpur', hours: 32, meals: 98, timestamp: '37 minutes ago' },
+      { city: 'Mumbai', hours: 42, meals: 130, timestamp: '25 minutes ago' },
+    ];
+
+    // ─── SCROLL TO FORM ─── 
+    document.getElementById('scrollToForm').addEventListener('click', () => {
+      document.getElementById('checkinFormSection').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // ─── LOAD GALLERY ─── 
+    function loadGallery() {
+      const gallery = document.getElementById('checkinGallery');
+      gallery.innerHTML = '';
+
+      sampleCheckins.forEach((checkin, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `
+          <div class="gallery-image">📸</div>
+          <h4>${checkin.city}</h4>
+          <p>${checkin.timestamp}</p>
+        `;
+        gallery.appendChild(item);
+      });
+
+      // Update stats
+      const totalRobins = sampleCheckins.length;
+      const totalMeals = sampleCheckins.reduce((sum, c) => sum + c.meals, 0);
+      
+      document.getElementById('totalRobins').textContent = totalRobins;
+      document.getElementById('totalMeals').textContent = totalMeals.toLocaleString();
+    }
+
+    // ─── LOAD HIGHLIGHTS ─── 
+    function loadHighlights() {
+      const highlightsGrid = document.getElementById('highlightsGrid');
+      highlightsGrid.innerHTML = '';
+
+      const cityStats = {};
+      sampleCheckins.forEach(c => {
+        if (!cityStats[c.city]) {
+          cityStats[c.city] = { count: 0, meals: 0 };
+        }
+        cityStats[c.city].count++;
+        cityStats[c.city].meals += c.meals;
+      });
+
+      const sorted = Object.entries(cityStats)
+        .sort((a, b) => b[1].count - a[1].count)
+        .slice(0, 10);
+
+      sorted.forEach((entry, index) => {
+        const [city, stats] = entry;
+        const item = document.createElement('div');
+        item.className = 'highlight-item';
+        item.innerHTML = `
+          <div class="highlight-rank">${index + 1}</div>
+          <div class="highlight-content">
+            <h4>${city}</h4>
+            <p>${stats.count} check-ins • ${stats.meals} meals</p>
+          </div>
+        `;
+        highlightsGrid.appendChild(item);
+      });
+    }
+
+    // ─── CHECKIN FORM HANDLING ─── 
+    const form = document.getElementById('checkinForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const checkinData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        city: document.getElementById('city').value,
+        date: document.getElementById('checkinDate').value,
+        hours: parseInt(document.getElementById('hours').value),
+        meals: parseInt(document.getElementById('meals').value),
+        activity: document.getElementById('activity').value,
+        notes: document.getElementById('notes').value,
+        timestamp: new Date().toLocaleString(),
+      };
+
+      // Save to localStorage
+      let checkins = JSON.parse(localStorage.getItem('checkins')) || [];
+      checkins.push(checkinData);
+      localStorage.setItem('checkins', JSON.stringify(checkins));
+
+      // Show success message
+      successMsg.classList.add('show');
+      form.reset();
+
+      // Reload gallery and leaderboard
+      loadGallery();
+      loadHighlights();
+      loadLeaderboard();
+
+      setTimeout(() => {
+        successMsg.classList.remove('show');
+      }, 3000);
+    });
+
+    // ─── LOAD LEADERBOARD ─── 
+    function loadLeaderboard() {
+      const storedCheckins = JSON.parse(localStorage.getItem('checkins')) || [];
+      const leaderboardList = document.getElementById('leaderboardList');
+      leaderboardList.innerHTML = '';
+
+      // Aggregate by name
+      const contributors = {};
+      storedCheckins.forEach(c => {
+        if (!contributors[c.name]) {
+          contributors[c.name] = { hours: 0, meals: 0, city: c.city };
+        }
+        contributors[c.name].hours += c.hours || 0;
+        contributors[c.name].meals += c.meals || 0;
+      });
+
+      // Sort and display top 5
+      const sorted = Object.entries(contributors)
+        .sort((a, b) => b[1].hours - a[1].hours)
+        .slice(0, 5);
+
+      if (sorted.length === 0) {
+        leaderboardList.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">No check-ins yet. Submit your check-in above!</p>';
+        return;
+      }
+
+      sorted.forEach((entry, index) => {
+        const [name, stats] = entry;
+        const item = document.createElement('div');
+        item.className = 'leaderboard-item';
+        item.innerHTML = `
+          <div class="rank-badge">#${index + 1}</div>
+          <div class="contributor-info">
+            <h3>${name}</h3>
+            <p>${stats.city} • ${stats.hours} hours</p>
+          </div>
+          <div class="contributor-stats">
+            <p>${stats.meals} meals</p>
+          </div>
+        `;
+        leaderboardList.appendChild(item);
+      });
+    }
+
+    // ─── INITIALIZE PAGE ─── 
+    loadGallery();
+    loadHighlights();
+    loadLeaderboard();
+  </script>
+</body>
+</html>

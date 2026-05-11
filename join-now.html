@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Robin Hood Army - Become a Volunteer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ─── JOIN NOW PAGE STYLES ─── */
+    .join-hero {
+      background: linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%);
+      color: #fff;
+      padding: 7rem 5%;
+      text-align: center;
+    }
+
+    .join-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .join-hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .join-cta {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .join-cta a {
+      display: inline-block;
+      padding: 1.1rem 2.5rem;
+      border-radius: 999px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .join-cta .btn-primary {
+      background: #fff;
+      color: #1a5f3f;
+    }
+
+    .join-cta .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    /* ─── WHY JOIN SECTION ─── */
+    .why-join {
+      background: #fff;
+      padding: 6rem 5%;
+    }
+
+    .why-join h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .why-join > p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .why-card {
+      padding: 2.5rem;
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-left: 5px solid #1a5f3f;
+      transition: all 0.3s ease;
+    }
+
+    .why-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(26, 95, 63, 0.15);
+    }
+
+    .why-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .why-card h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1c1c1c;
+      margin-bottom: 0.8rem;
+    }
+
+    .why-card p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ─── OPPORTUNITIES SECTION ─── */
+    .opportunities {
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      padding: 6rem 5%;
+    }
+
+    .opportunities h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .opportunities > p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .opp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .opp-card {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .opp-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(26, 95, 63, 0.15);
+    }
+
+    .opp-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #1a5f3f;
+      margin-bottom: 0.5rem;
+    }
+
+    .opp-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #1c1c1c;
+      margin-bottom: 1rem;
+    }
+
+    .opp-card p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .opp-features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .opp-features li {
+      padding: 0.5rem 0;
+      color: #666;
+      font-size: 0.9rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .opp-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #1a5f3f;
+      font-weight: 800;
+    }
+
+    /* ─── IMPACT SECTION ─── */
+    .impact-section {
+      background: #fff;
+      padding: 6rem 5%;
+    }
+
+    .impact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .impact-item {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      border-radius: 12px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .impact-item:hover {
+      border-color: #1a5f3f;
+      transform: translateY(-8px);
+    }
+
+    .impact-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #1a5f3f;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-label {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 600;
+    }
+
+    /* ─── HOW TO JOIN SECTION ─── */
+    .how-to-join {
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      padding: 6rem 5%;
+    }
+
+    .how-to-join h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      position: relative;
+      text-align: center;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%);
+      color: #fff;
+      border-radius: 50%;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .step-card h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1c1c1c;
+      margin-bottom: 0.8rem;
+    }
+
+    .step-card p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ─── TESTIMONIALS SECTION ─── */
+    .testimonials {
+      background: #fff;
+      padding: 6rem 5%;
+    }
+
+    .testimonials h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .testimonials > p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(135deg, #f9f5f0 0%, #f0e8df 100%);
+      padding: 2.5rem;
+      border-radius: 12px;
+      border-left: 5px solid #1a5f3f;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(26, 95, 63, 0.15);
+    }
+
+    .testimonial-text {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      color: #1a5f3f;
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .testimonial-role {
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    /* ─── FINAL CTA SECTION ─── */
+    .final-cta {
+      background: linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%);
+      color: #fff;
+      padding: 6rem 5%;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta p {
+      font-size: 1.15rem;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .final-cta .btn {
+      background: #fff;
+      color: #1a5f3f;
+      padding: 1.2rem 3rem;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 980px) {
+      .join-hero {
+        padding: 4rem 5%;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .opp-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ─── -->
+  <nav>
+    <div class="nav-logo">
+      <a href="robinhoodarmy-clone.html">Robin Hood Army</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="robinhoodarmy-clone.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="mission-sankalp-78.html">Mission Sankalp 78</a></li>
+      <li><a href="checkin.html">CheckIn</a></li>
+      <li><a href="join-now.html" class="active cta-nav">Join Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── JOIN HERO SECTION ─── -->
+  <section class="join-hero">
+    <h1>Be the Change You Want to See</h1>
+    <p>Join thousands of volunteers making a real difference in the fight against hunger. Become a Robin today and start your journey with Robin Hood Army.</p>
+    <div class="join-cta">
+      <a href="#how-to-join" class="btn btn-primary">Get Started</a>
+      <a href="checkin.html" class="btn" style="background: rgba(255,255,255,0.2); color: #fff; border: 2px solid #fff;">Go to CheckIn</a>
+    </div>
+  </section>
+
+  <!-- ─── WHY JOIN SECTION ─── -->
+  <section class="why-join">
+    <h2>Why Join Robin Hood Army?</h2>
+    <p>Discover what makes being a Robin special and how you can contribute to ending hunger.</p>
+    
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-icon">🤝</span>
+        <h3>Be Part of a Movement</h3>
+        <p>Join 266,000+ volunteers across 406+ cities working together towards a common goal of ending hunger and creating equality.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">💪</span>
+        <h3>Make Real Impact</h3>
+        <p>See the direct impact of your work. Every hour you contribute helps distribute meals and change lives in your community.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🌟</span>
+        <h3>Grow & Learn</h3>
+        <p>Develop leadership skills, build connections, and learn from inspiring individuals. Access training through Robin Hood Academy.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🎯</span>
+        <h3>Flexible Participation</h3>
+        <p>Work at your own pace. Whether you have a few hours a week or more, there's a role for you in our organization.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🏆</span>
+        <h3>Get Recognized</h3>
+        <p>Your contributions matter. Top volunteers are celebrated and recognized for their dedication and impact.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🌍</span>
+        <h3>Zero Barriers</h3>
+        <p>No background checks, fees, or barriers to entry. Everyone can be a Robin. All beliefs and backgrounds welcome.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── OPPORTUNITIES SECTION ─── -->
+  <section class="opportunities">
+    <h2>How You Can Contribute</h2>
+    <p>Choose the way that suits you best. Every role is crucial to our mission.</p>
+    
+    <div class="opp-grid">
+      <div class="opp-card">
+        <div class="opp-number">1</div>
+        <h3>Food Distribution</h3>
+        <p>Be on the ground distributing meals to people in need. This is the heart of what we do.</p>
+        <ul class="opp-features">
+          <li>Weekly or monthly drives</li>
+          <li>Build direct connections</li>
+          <li>Flexible timing</li>
+          <li>Team activities</li>
+        </ul>
+      </div>
+      <div class="opp-card">
+        <div class="opp-number">2</div>
+        <h3>Food Collection</h3>
+        <p>Help collect surplus food from restaurants, stores, and communities before it goes to waste.</p>
+        <ul class="opp-features">
+          <li>Coordinate with restaurants</li>
+          <li>Quality food sourcing</li>
+          <li>Transportation support</li>
+          <li>Early morning or evening</li>
+        </ul>
+      </div>
+      <div class="opp-card">
+        <div class="opp-number">3</div>
+        <h3>Event Coordination</h3>
+        <p>Organize and lead community events, fundraisers, and awareness campaigns.</p>
+        <ul class="opp-features">
+          <li>Plan large-scale events</li>
+          <li>Community engagement</li>
+          <li>Leadership opportunities</li>
+          <li>Strategic planning</li>
+        </ul>
+      </div>
+      <div class="opp-card">
+        <div class="opp-number">4</div>
+        <h3>Online Support</h3>
+        <p>Contribute from home through social media, graphic design, content, or administrative work.</p>
+        <ul class="opp-features">
+          <li>Work remotely</li>
+          <li>Creative roles</li>
+          <li>Social media management</li>
+          <li>Data & documentation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── IMPACT SECTION ─── -->
+  <section class="impact-section">
+    <h2>Your Impact Matters</h2>
+    
+    <div class="impact-grid">
+      <div class="impact-item">
+        <div class="impact-number">1 Hour</div>
+        <div class="impact-label">Can feed 15-20 people</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number">4 Hours</div>
+        <div class="impact-label">Can organize a small drive</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number">8 Hours</div>
+        <div class="impact-label">Can feed 100+ people</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-number">100 Hours</div>
+        <div class="impact-label">Changes a neighborhood</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW TO JOIN SECTION ─── -->
+  <section class="how-to-join" id="how-to-join">
+    <h2>Getting Started is Simple</h2>
+    
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Find Your Chapter</h3>
+        <p>Search for Robin Hood Army in your city. We operate in 406+ cities worldwide. Connect with your local chapter.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Attend an Event</h3>
+        <p>Join us for a distribution drive or orientation. No prior experience needed. Come as you are.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Start Contributing</h3>
+        <p>Volunteer regularly, check in your activities, and become part of our community. Scale up your involvement as you grow.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3>Grow as a Leader</h3>
+        <p>Move into leadership roles, mentoring others, and shaping the future of your chapter and the movement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS SECTION ─── -->
+  <section class="testimonials">
+    <h2>Stories from Our Robins</h2>
+    <p>Hear from volunteers who've joined our movement and found purpose through service.</p>
+    
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-text">"Being a Robin changed my perspective on life. Every distribution drive reminds me why this matters. I've found my community and my purpose."</div>
+        <div class="testimonial-author">— Priya Sharma</div>
+        <div class="testimonial-role">Delhi Chapter • 45 Hours Contributed</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">"What started as a weekend activity became my passion. The impact I see in people's eyes is worth every moment. RHA taught me that change starts with us."</div>
+        <div class="testimonial-author">— Rohit Verma</div>
+        <div class="testimonial-role">Mumbai Chapter • Chapter Lead</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-text">"I wasn't sure how much difference I could make. But after joining RHA, I realized that every person's contribution is significant. This is a family, not just an organization."</div>
+        <div class="testimonial-author">— Anjali Patel</div>
+        <div class="testimonial-role">Bangalore Chapter • 6 Months Volunteer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA SECTION ─── -->
+  <section class="final-cta">
+    <h2>Ready to Make a Difference?</h2>
+    <p>Join Robin Hood Army today and become part of a global movement fighting hunger. Your actions matter. Your community needs you.</p>
+    <a href="checkin.html" class="btn">Start Your Journey</a>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Robin Hood Army</div>
+      <p>Join us in our mission to fight hunger and build a stronger community.</p>
+      <p class="footer-copy">&copy; 2024 Robin Hood Army. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ─── WHATSAPP FAB ─── -->
+  <a href="https://api.whatsapp.com/send/?phone=918971966164" class="whatsapp-fab" target="_blank">💬</a>
+
+</body>
+</html>
